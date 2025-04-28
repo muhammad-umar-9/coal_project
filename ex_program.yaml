@@ -1,0 +1,51 @@
+REG: 
+  TP: 4
+
+FF: 
+  GS: 1
+  S: 1
+  SW: 1
+
+M: 
+  0: #order of context switching
+    - 0
+    - 1
+  8: 2 #no. of instructions between context switching
+
+  0A: 8 #multiplicand
+  0B: 0 #answer for addition with input
+  
+  0F:
+    - ADD
+    - LDA 0A
+    - AWT 1
+    - CAL 0B
+    - STA 0B
+    - HLT
+
+  16: 
+    - SKI 
+    - BR 16
+    - INP
+    - STA 0B
+    - HLT
+
+M2: 
+  0: 
+    PC: 0F
+    PC0: 0F
+    AC: 0
+    E: 0
+    A0: 0
+    A1: 0
+    S: 1
+  1: 
+    PC: 16
+    PC0: 16
+    AC: 0
+    E: 0
+    A0: 0
+    A1: 0
+    S: 1
+
+  

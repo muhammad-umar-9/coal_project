@@ -1,0 +1,63 @@
+REG: 
+    TP: 1 #required to indicate the total number of processes
+FF:
+    GS: 1    
+    S: 1
+    SW: 0
+    #PSR example
+    #PSR: 0-0-0-0-0AC-1D-1D
+
+M: 
+    00:  #required since the context switching will placed in the following order
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+
+    08: 3 #required since it indicates the time after which context switching will occurr
+    09: 14 #required for io interrupt handling
+    0A:
+        - 0B
+        - 12 
+        - 0
+        - LDA 0A I
+        - SUB
+        - CAL 0B
+        - SZA 
+        - BR 0D
+        - HLT 
+
+    14: 
+        - INP
+        - OUT
+        - LDP 
+    
+    1A: 
+        - 00F
+        - LDA 1A
+        - CIR
+        - HLT
+
+M2: 
+    0: 
+        PC: 0D
+        PC0: 0D
+        AC: 0
+        S: 1
+        A0: 0
+        A1: 0
+        E: 0
+#     1: 
+#         PC: 1D
+#         PC0: 1D
+#         AC: 0
+#         S: 1
+#         A0: 0
+#         A1: 0
+#         E: 0
+        
+
